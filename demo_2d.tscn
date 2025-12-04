@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj2evvyq4bs4d"]
+
+[ext_resource type="Texture2D" uid="uid://bkcr36hllehnr" path="res://addons/antialiased_line2d/antialiased_texture.res" id="1_itky3"]
+[ext_resource type="Script" uid="uid://do0g7nebwevll" path="res://addons/antialiased_line2d/antialiased_regular_polygon_2d.gd" id="1_ppfrx"]
+[ext_resource type="Script" uid="uid://dn534defa6rgl" path="res://addons/antialiased_line2d/antialiased_line_2d.gd" id="2_0d3o8"]
+[ext_resource type="Script" uid="uid://cffrqtfahnwmy" path="res://addons/antialiased_line2d/antialiased_polygon_2d.gd" id="3_ywlda"]
+
+[sub_resource type="Curve" id="Curve_lbxes"]
+_data = [Vector2(0, 0.21329296), 0.0, -0.5499946, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_mwmwj"]
+colors = PackedColorArray(0.8936984, 0.5757751, 0, 1, 1, 0.40018785, 1, 1)
+
+[node name="Demo2D" type="Node2D" unique_id=156282689]
+
+[node name="AntialiasedLine2D" type="Line2D" parent="." unique_id=1129113876]
+texture_filter = 6
+position = Vector2(234, 304)
+points = PackedVector2Array(-79, -165, 134, -59, -106, 146, 126, 225)
+width = 30.0
+width_curve = SubResource("Curve_lbxes")
+gradient = SubResource("Gradient_mwmwj")
+texture = ExtResource("1_itky3")
+texture_mode = 1
+script = ExtResource("2_0d3o8")
+metadata/_custom_type_script = "uid://dn534defa6rgl"
+
+[node name="AntialiasedPolygon2D" type="Polygon2D" parent="." unique_id=1315508753]
+position = Vector2(616, 360)
+color = Color(0.4445356, 0.6073561, 1, 1)
+polygon = PackedVector2Array(-88, -179, 102, -164, 87, -26, 177, 54, -124, 166, -67, -62)
+script = ExtResource("3_ywlda")
+stroke_color = Color(0.8694817, 0.9994655, 0.5256372, 1)
+stroke_width = 30.0
+stroke_joint_mode = 2
+metadata/_custom_type_script = "uid://cffrqtfahnwmy"
+
+[node name="AntialiasedRegularPolygon2D" type="Polygon2D" parent="." unique_id=924601883]
+position = Vector2(948, 307)
+color = Color(1, 0.37254903, 0.16078432, 1)
+polygon = PackedVector2Array(100, 0, 98.66433, 16.289547, 94.69301, 32.143948, 88.19213, 47.13967, 79.335335, 60.876144, 68.35923, 72.986404, 55.557026, 83.14696, 41.270706, 91.08638, 25.881907, 96.59258, 9.801713, 99.51847, -6.5403166, 99.7859, -22.707632, 97.387695, -38.26834, 92.387955, -52.80678, 84.92021, -65.93458, 75.18399, -77.30105, 63.439327, -86.60254, 50.000008, -93.59059, 35.224995, -98.07853, 19.509031, -99.94646, 3.2719169, -99.144485, -13.052626, -95.69404, -29.028467, -89.68727, -44.228878, -81.28467, -58.24777, -70.710686, -70.71067, -58.24778, -81.28466, -44.22887, -89.68728, -29.028454, -95.69404, -13.052639, -99.144485, 3.2719028, -99.94646, 19.50904, -98.07852, 35.22503, -93.59058, 49.999992, -86.60255, 0, 0)
+script = ExtResource("1_ppfrx")
+size = Vector2(200, 200)
+arc = 5.235987755982989
+stroke_color = Color(0.14464921, 0.116794996, 0.29650894, 1)
+stroke_width = 32.0
+stroke_joint_mode = 1
+metadata/_custom_type_script = "uid://do0g7nebwevll"
