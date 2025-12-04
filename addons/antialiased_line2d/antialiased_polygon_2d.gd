@@ -20,6 +20,8 @@ var antialiased_line_2d := AntialiasedLine2D.new()
 
 
 func _init() -> void:
+	draw.connect(func() -> void: antialiased_line_2d.points = polygon)
+
 	antialiased_line_2d.closed = true
 	add_child(antialiased_line_2d, INTERNAL_MODE_FRONT)
 	antialiased_line_2d.owner = self
@@ -29,12 +31,6 @@ func _init() -> void:
 	stroke_joint_mode = stroke_joint_mode
 	stroke_sharp_limit = stroke_sharp_limit
 	stroke_round_precision = stroke_round_precision
-
-
-func _set(property: StringName, value: Variant) -> bool:
-	if property == &"polygon":
-		antialiased_line_2d.points = polygon
-	return false
 
 
 func set_stroke_color(p_stroke_color: Color) -> void:
