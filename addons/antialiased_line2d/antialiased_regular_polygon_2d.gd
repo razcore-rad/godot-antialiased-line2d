@@ -15,20 +15,13 @@ extends AntialiasedPolygon2D
 
 func _init() -> void:
 	super()
+	for connection: Dictionary in draw.get_connections():
+		draw.disconnect(connection.callable)
 	_update_points()
 
 
 func _update_points() -> void:
-	var points := PackedVector2Array()
-	var half_size := size * 0.5
-	for side in sides:
-		points.push_back(Vector2.RIGHT.rotated(side / float(sides) * arc) * half_size)
-
-	if not is_equal_approx(arc, TAU):
-		points.push_back(Vector2.RIGHT.rotated(arc) * half_size)
-		points.push_back(Vector2.ZERO)
-
-	polygon = points
+	polygon = build_polygon(size, sides, arc)
 	antialiased_line_2d.points = polygon
 
 
@@ -45,3 +38,16 @@ func set_sides(p_sides: int) -> void:
 func set_arc(p_arc: float) -> void:
 	arc = p_arc
 	_update_points()
+
+
+static func build_polygon(size: Vector2, sides := 32, arc := TAU, has_point_at_origin := true) -> PackedVector2Array:
+	var result := PackedVector2Array()
+	var half_size := size * 0.5
+	for side: int in range(sides):
+		result.push_back(Vector2.RIGHT.rotated(side / float(sides) * arc) * half_size)
+
+	if not is_equal_approx(arc, TAU):
+		result.push_back(Vector2.RIGHT.rotated(arc) * half_size)
+		if has_point_at_origin:
+			result.push_back(Vector2.ZERO)
+	return result
