@@ -9,7 +9,7 @@ extends AntialiasedPolygon2D
 	set = set_size
 @export_range(3, 128, 1, "or_greater") var sides := 32:
 	set = set_sides
-@export_range(0.0, 360.0, 0.01, "radians_as_degrees", "prefer_slider") var arc := TAU:
+@export_range(-360, 360.0, 0.01, "radians_as_degrees", "prefer_slider") var arc := TAU:
 	set = set_arc
 
 
@@ -36,7 +36,7 @@ func set_sides(p_sides: int) -> void:
 
 
 func set_arc(p_arc: float) -> void:
-	arc = p_arc
+	arc = clampf(p_arc, -TAU, TAU)
 	_update_points()
 
 
@@ -46,7 +46,7 @@ static func build_polygon(size: Vector2, sides := 32, arc := TAU, has_point_at_o
 	for side: int in range(sides):
 		result.push_back(Vector2.RIGHT.rotated(side / float(sides) * arc) * half_size)
 
-	if not is_equal_approx(arc, TAU):
+	if not is_equal_approx(absf(arc), TAU):
 		result.push_back(Vector2.RIGHT.rotated(arc) * half_size)
 		if has_point_at_origin:
 			result.push_back(Vector2.ZERO)
