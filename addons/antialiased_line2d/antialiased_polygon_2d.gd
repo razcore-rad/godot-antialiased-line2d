@@ -23,7 +23,7 @@ func _init() -> void:
 	draw.connect(func() -> void: antialiased_line_2d.points = polygon)
 
 	antialiased_line_2d.closed = true
-	add_child(antialiased_line_2d, INTERNAL_MODE_FRONT)
+	add_child(antialiased_line_2d, false, INTERNAL_MODE_FRONT)
 	antialiased_line_2d.owner = self
 
 	stroke_color = stroke_color
