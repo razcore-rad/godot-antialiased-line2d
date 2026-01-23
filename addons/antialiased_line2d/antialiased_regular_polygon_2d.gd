@@ -1,7 +1,7 @@
 # This is a convenience node that automatically synchronizes an AntialiasedLine2D
 # with a Polygon2D, while also generating a regular Polygon2D shape (hexagon, octagon, …).
 @tool
-@icon("antialiased_regular_polygon2d.svg")
+@icon("antialiased_regular_polygon_2d.svg")
 class_name AntialiasedRegularPolygon2D
 extends AntialiasedPolygon2D
 
@@ -13,7 +13,7 @@ extends AntialiasedPolygon2D
 	set = set_arc
 
 
-func _init() -> void:
+func _ready() -> void:
 	super()
 	for connection: Dictionary in draw.get_connections():
 		draw.disconnect(connection.callable)

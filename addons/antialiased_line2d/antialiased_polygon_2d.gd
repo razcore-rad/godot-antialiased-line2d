@@ -1,7 +1,7 @@
 # This is a convenience node that automatically synchronizes an AntialiasedLine2D
 # with a Polygon2D.
 @tool
-@icon("antialiased_polygon2d.svg")
+@icon("antialiased_polygon_2d.svg")
 class_name AntialiasedPolygon2D
 extends Polygon2D
 
@@ -19,11 +19,11 @@ extends Polygon2D
 var antialiased_line_2d := AntialiasedLine2D.new()
 
 
-func _init() -> void:
+func _ready() -> void:
 	draw.connect(func() -> void: antialiased_line_2d.points = polygon)
 
 	antialiased_line_2d.closed = true
-	add_child(antialiased_line_2d, false, INTERNAL_MODE_FRONT)
+	add_child(antialiased_line_2d, false, Node.INTERNAL_MODE_FRONT)
 	antialiased_line_2d.owner = self
 
 	stroke_color = stroke_color
